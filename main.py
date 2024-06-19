@@ -45,7 +45,7 @@ app.layout = html.Div([
     html.Div(id='hoverEdge'),
     cyto.Cytoscape(
         id='cytoscape-simple-graph',
-        style={'width': '100%', 'height': '70vh'},  # Adjust the height to 70% of the viewport height
+        style={'width': '100%', 'height': '100vh'},
         layout={'name': 'preset'},
         stylesheet=[
             {
