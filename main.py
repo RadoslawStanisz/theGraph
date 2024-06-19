@@ -3,7 +3,7 @@ import dash_cytoscape as cyto
 import pandas as pd
 import json
 
-# Wczytywanie danych
+
 df = pd.read_csv("railway.csv")
 
 json_file = "station_coords.json"
@@ -23,10 +23,10 @@ station_labels = {
     'Edinburgh Waverley': {'label': 'Edinburgh'}
 }
 
-# Inicjalizacja aplikacji
-app = Dash(__name__)
 
-# Ustawienie layoutu aplikacji
+app = Dash(__name__)
+server = app.server
+
 app.layout = html.Div([
     html.H3('Most popular routes'),
     dcc.Dropdown(
@@ -37,7 +37,8 @@ app.layout = html.Div([
             {'label': 'All', 'value': 'all'}
         ],
         value=10,
-        clearable=False
+        clearable=False,
+        style={'width': '50%'}
     ),
     html.Br(),
     html.Div(id='hoverNode'),
@@ -99,7 +100,6 @@ app.layout = html.Div([
     )
 ])
 
-# Definicja callbacków
 @app.callback(
     Output('cytoscape-simple-graph', 'elements'),
     Input('route-selection', 'value')
@@ -153,6 +153,5 @@ def display_hover_edge_data(data):
         else:
             return "Route: %s" % label
 
-# Uruchomienie aplikacji
 if __name__ == '__main__':
     app.run_server(debug=True)
