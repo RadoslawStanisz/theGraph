@@ -96,7 +96,9 @@ app.layout = html.Div([
                     'curve-style': 'bezier'
                 }
             }
-        ]
+        ],
+        userZoomingEnabled=False,
+        userPanningEnabled=True
     )
 ])
 
